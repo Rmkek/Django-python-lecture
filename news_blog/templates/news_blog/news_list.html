@@ -8,7 +8,7 @@
             <div class="row"> 
                 <div class="col-sm">
                     <h3><a href={% url 'article' article_id=article.id %}>{{ article.title }}</a></h3>   
-                    <p>{{ article.text }}</p>
+                    <p>{{ article.text | linebreaks }}</p>
                 </div>
             </div>
         {% endfor %}

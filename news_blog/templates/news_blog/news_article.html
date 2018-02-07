@@ -6,7 +6,14 @@
     <div class="row">
         <div class="col-sm">
             <h3>{{ article.title }}</h3>
-            <p>{{ article.text }}</p>
+            <h4>{{ author.name }}</h4>
+            <p>{{ article.text | linebreaks }}</p>
+            <div class="card">
+                <H1>Comments: </H1>
+                <h4>{{ comment.author.name }}</h4>
+                <p>{{ comment.text }}</p>
+                <h7>{{ comment.published_date }}</h7>
+            </div>
         </div>
     </div>
 {% endblock %}
