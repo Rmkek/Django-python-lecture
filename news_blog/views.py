@@ -12,14 +12,13 @@ def index(request):
 def get_article(request, article_id):
     try:
         article = Article.objects.get(id=article_id)
-        author = Author.objects.filter(article__pk=article_id)
-        comment = Comment.objects.filter(article=article)
-        print(comment)
+        author = Author.objects.filter(article__pk=article_id)[0]
+        comments = Comment.objects.filter(article=article)
 
-    except (Article.DoesNotExist, Author.DoesNotExist):
+    except (Article.DoesNotExist, Author.DoesNotExist, Comment.DoesNotExist):
         return HttpResponseNotFound()
 
-    return render(request, 'news_blog/news_article.html', {'article': article, 'author': author[0], 'comment': comment[0]})
+    return render(request, 'news_blog/news_article.html', {'article': article, 'author': author, 'comments': comments})
 
 
 def get_about_me(request):

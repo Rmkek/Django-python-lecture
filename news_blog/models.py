@@ -11,6 +11,9 @@ class Author(models.Model):
     def __unicode__(self):
         return self.name
 
+    def __str__(self):
+        return self.name
+
 
 class Article(models.Model):
     title = models.CharField(max_length=100)
@@ -29,9 +32,15 @@ class Article(models.Model):
     def __unicode__(self):
         return '{} {}'.format(self.title, self.created_date)
 
+    def __str__(self):
+        return '{}'.format(self.title)
+
 
 class Comment(models.Model):
     author = models.ForeignKey(Author, on_delete=models.CASCADE)
     article = models.ForeignKey(Article, on_delete=models.CASCADE)
-    text = models.TextField(max_length=250, null=False)
+    text = models.TextField(max_length=2500, null=False)
     published_date = models.DateTimeField(default=timezone.now)
+
+    def __str__(self):
+        return 'Comment by {} in {}'.format(self.author, self.article)
