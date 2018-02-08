@@ -1,19 +1,19 @@
 {% extends "news_blog/base.html" %}
 
-{% block title %}Article ID: {{article.id}}{% endblock %}
+{% block title %}Article ID: {{ article.id }}{% endblock %}
 {% block content %}
     <div class="row">
-        <div class="col col-md">
+        <div class="col-md">
             <h3>{{ article.title }}</h3>
             <h4>{{ author.name }}</h4>
             <p>{{ article.text | linebreaks }}</p>
         </div>
-        {% for comment in comments %}
-            <div class="col-sm">
+        <div class="col-sm">
+            {% for comment in comments %}
                 <h4>{{ comment.author.name }}</h4>
                 <p>{{ comment.text }}</p>
                 <h7>{{ comment.published_date }}</h7>
-            </div>
-        {% endfor %}
+            {% endfor %}
+        </div>
     </div>
 {% endblock %}

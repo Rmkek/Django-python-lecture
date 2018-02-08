@@ -1,4 +1,5 @@
 from django.shortcuts import render
+from django.core.exceptions import ObjectDoesNotExist
 from django.http import HttpResponseNotFound
 from .models import Article, Author, Comment
 
@@ -15,7 +16,7 @@ def get_article(request, article_id):
         author = Author.objects.filter(article__pk=article_id)[0]
         comments = Comment.objects.filter(article=article)
 
-    except (Article.DoesNotExist, Author.DoesNotExist, Comment.DoesNotExist):
+    except ObjectDoesNotExist:
         return HttpResponseNotFound()
 
     return render(request, 'news_blog/news_article.html', {'article': article, 'author': author, 'comments': comments})

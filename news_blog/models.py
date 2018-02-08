@@ -8,9 +8,6 @@ class Author(models.Model):
     name = models.CharField(max_length=50)
     email = models.EmailField()
 
-    def __unicode__(self):
-        return self.name
-
     def __str__(self):
         return self.name
 
@@ -28,9 +25,6 @@ class Article(models.Model):
 
     def remove(self):
         self.delete()
-
-    def __unicode__(self):
-        return '{} {}'.format(self.title, self.created_date)
 
     def __str__(self):
         return '{}'.format(self.title)
