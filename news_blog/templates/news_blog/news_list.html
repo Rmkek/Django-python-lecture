@@ -4,10 +4,16 @@
 
 {% block content %}
     {% if articles %}
+        <div class="row">
+            <div class="col-sm">
+                <a href="{% url 'new_article' %}" class="top-menu">Add news&nbsp;<span
+                        class="glyphicons glyphicons-plus"></span></a>
+            </div>
+        </div>
         {% for article in articles %}
-            <div class="row"> 
+            <div class="row">
                 <div class="col-md">
-                    <h3><a href={% url 'article' article_id=article.id %}>{{ article.title }}</a></h3>   
+                    <h3><a href={% url 'article' article_id=article.id %}>{{ article.title }}</a></h3>
                     <p>{{ article.text | linebreaks }}</p>
                 </div>
             </div>

@@ -3,9 +3,14 @@
 {% block title %}Article ID: {{ article.id }}{% endblock %}
 {% block content %}
     <div class="row">
-        <div class="col-md">
+        <div class="col-sm">
             <h3>{{ article.title }}</h3>
-            <h4>{{ author.name }}</h4>
+            <small>
+                <a class="btn btn-default" href="{% url 'edit_article' article_id=article.id %}">
+                    Edit article
+                </a>
+            </small>
+            <h4>{{ article.author.name }}</h4>
             <p>{{ article.text | linebreaks }}</p>
         </div>
         <div class="col-sm">
@@ -13,6 +18,9 @@
                 <h4>{{ comment.author.name }}</h4>
                 <p>{{ comment.text }}</p>
                 <h7>{{ comment.published_date }}</h7>
+                <small>                           {# FIXME: bugged urls here #}
+                    <a class="btn btn-default" href="{% url 'edit_comment' comment_id=comment.pk %}">Edit comment</a>
+                </small>
             {% endfor %}
         </div>
     </div>
